@@ -24,8 +24,21 @@ class Pemilik extends MY_Controller
 
 	public function tambah_ruko()
 	{
+		if ($this->POST('submit'))
+		{
+			$this->load->model('ruko_m');
+			
+			$uploaded_files = $this->POST('uploaded_files');
+			redirect('pemilik/tambah-ruko');
+		}
+
 		$this->data['title']	= 'Form Penambahan Ruko Baru';
 		$this->data['content']	= 'form_tambah_ruko';
 		$this->template($this->data, $this->module);
+	}
+
+	public function upload_handler()
+	{
+		require_once(FCPATH . '/assets/jQuery-File-Upload-9.23.0/server/php/index.php');
 	}
 }

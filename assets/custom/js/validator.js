@@ -408,4 +408,5 @@ var validator = (function($){
         unmark      : unmark,
         message     : message,
         tests       : tests
-   
+    }
+})(jQuery);
