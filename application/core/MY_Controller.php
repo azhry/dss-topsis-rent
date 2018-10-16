@@ -82,7 +82,19 @@ class MY_Controller extends CI_Controller
 		}
 	}
 
-	protected function __generate_random_id() {
+	protected function __generate_random_id() 
+	{
 		return mt_rand();
+	}
+
+	protected function remove_directory($path) 
+	{
+	    $files = array_diff(scandir($path), ['.', '..']);
+	    foreach ($files as $file) 
+	    {
+	        is_dir($file) ? removeDirectory($file) : unlink($file);
+	    }
+	    rmdir($path);
+	    return;
 	}
 }

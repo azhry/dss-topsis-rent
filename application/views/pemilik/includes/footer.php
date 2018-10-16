@@ -36,6 +36,6 @@
     <script src="<?= base_url('assets') ?>/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     
     <!-- Custom Theme Scripts -->
-    <script src="<?= base_url('assets') ?>/build/js/custom.min.js"></script>
+    <script src="<?= base_url('assets') ?>/build/js/custom.js"></script>
   </body>
 </html>

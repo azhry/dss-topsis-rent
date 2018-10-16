@@ -188,7 +188,7 @@ $(document).ready(function() {
 
 // Progressbar
 if ($(".progress .progress-bar")[0]) {
-    $('.progress .progress-bar').progressbar();
+    // $('.progress .progress-bar').progressbar();
 }
 // /Progressbar
 
@@ -1818,53 +1818,53 @@ if (typeof NProgress != 'undefined') {
         validator.checkField.apply($(this).siblings().last()[0]);
       });
 
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
+  //     $('form').submit(function(e) {
+  //       e.preventDefault();
+  //       var submit = true;
 
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
+  //       // evaluate the form using generic validaing
+  //       if (!validator.checkAll($(this))) {
+  //         submit = false;
+  //       }
 
-        if (submit)
-          this.submit();
+  //       if (submit)
+  //         this.submit();
 
-        return false;
-		});
+  //       return false;
+		// });
 	  
 	  };
 	   
 	  	/* PNotify */
 			
-		function init_PNotify() {
+		// function init_PNotify() {
 			
-			if( typeof (PNotify) === 'undefined'){ return; }
-			console.log('init_PNotify');
+		// 	if( typeof (PNotify) === 'undefined'){ return; }
+		// 	console.log('init_PNotify');
 			
-			new PNotify({
-			  title: "PNotify",
-			  type: "info",
-			  text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
-			  nonblock: {
-				  nonblock: true
-			  },
-			  addclass: 'dark',
-			  styling: 'bootstrap3',
-			  hide: false,
-			  before_close: function(PNotify) {
-				PNotify.update({
-				  title: PNotify.options.title + " - Enjoy your Stay",
-				  before_close: null
-				});
+		// 	new PNotify({
+		// 	  title: "PNotify",
+		// 	  type: "info",
+		// 	  text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
+		// 	  nonblock: {
+		// 		  nonblock: true
+		// 	  },
+		// 	  addclass: 'dark',
+		// 	  styling: 'bootstrap3',
+		// 	  hide: false,
+		// 	  before_close: function(PNotify) {
+		// 		PNotify.update({
+		// 		  title: PNotify.options.title + " - Enjoy your Stay",
+		// 		  before_close: null
+		// 		});
 
-				PNotify.queueRemove();
+		// 		PNotify.queueRemove();
 
-				return false;
-			  }
-			});
+		// 		return false;
+		// 	  }
+		// 	});
 
-		}; 
+		// }; 
 	   
 	   
 	   /* CUSTOM NOTIFICATION */
@@ -5056,7 +5056,7 @@ if (typeof NProgress != 'undefined') {
 		init_DataTables();
 		init_chart_doughnut();
 		init_gauge();
-		init_PNotify();
+		// init_PNotify();
 		init_starrr();
 		init_calendar();
 		init_compose();

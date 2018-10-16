@@ -1,5 +1,9 @@
 <link href="<?= base_url('assets') ?>/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
+<!-- PNotify -->
+<link href="<?= base_url('assets') ?>/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+<link href="<?= base_url('assets') ?>/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+
 <div class="right_col" role="main">
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
@@ -23,7 +27,7 @@
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="luas_bangunan">Luas Bangunan <span class="required">*</span></label>
-							<div class="col-md-6 col-sm-6 col-xs-12 input-group" style="padding-left: 10px;">
+							<div class="col-md-3 col-sm-3 col-xs-12 input-group" style="padding-left: 10px;">
 								<input type="number" id="luas_bangunan" name="luas_bangunan" required="required" min="1" class="form-control col-md-7 col-xs-12">
 								<span class="input-group-addon" aria-hidden="true">m²</span>
 							</div>
@@ -34,7 +38,7 @@
 								<p style="padding: 5px;">
 									<div class="row">
 										<div class="col-md-4">
-											<input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi1" value="Pejalan Kaki" data-parsley-mincheck="1" required class="flat" /> Pejalan Kaki
+											<input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi1" value="Pejalan Kaki" data-parsley-mincheck="1" class="flat" /> Pejalan Kaki
 					                        <br/><br/>
 
 					                        <input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi2" value="Angkutan Umum" class="flat" /> Angkutan Umum
@@ -60,7 +64,7 @@
 								<p style="padding: 5px;">
 									<div class="row">
 										<div class="col-md-4">
-											<input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian1" value="Kantor" data-parsley-mincheck="1" required class="flat" /> Kantor
+											<input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian1" value="Kantor" data-parsley-mincheck="1" class="flat" /> Kantor
 					                        <br/><br/>
 
 					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian2" value="Mall" class="flat" /> Mall
@@ -88,14 +92,14 @@
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="zona_parkir">Zona Parkir <span class="required">*</span></label>
-							<div class="col-md-6 col-sm-6 col-xs-12 input-group" style="padding-left: 10px;">
+							<div class="col-md-3 col-sm-3 col-xs-12 input-group" style="padding-left: 10px;">
 								<input type="number" id="zona_parkir" name="zona_parkir" required="required" min="1" class="form-control col-md-7 col-xs-12">
 								<span class="input-group-addon" aria-hidden="true">m²</span>
 							</div>
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah_pesaing_serupa">Jumlah Pesaing Serupa <span class="required">*</span></label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="col-md-3 col-sm-3 col-xs-12">
 								<input type="number" id="jumlah_pesaing_serupa" name="jumlah_pesaing_serupa" required="required" min="0" class="form-control col-md-7 col-xs-12">
 							</div>
 						</div>
@@ -129,12 +133,12 @@
 
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="lingkungan_lokasi_ruko">Lokasi Ruko <span class="required">*</span></label>
-							<input id="pac-input" class="form-control" type="text" placeholder="Cari Lokasi"/>
+							<input id="pac-input" class="controls" type="text" placeholder="Cari Lokasi"/>
 							<div id="map" style="height: 250px;"></div>
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="lingkungan_lokasi_ruko">Koordinat Lokasi <span class="required">*</span></label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="col-md-3 col-sm-3 col-xs-12">
 								<input type="number" step="any" name="latitude" required class="form-control col-md-7 col-xs-12"/>
 								<input type="number" step="any" name="longitude" required class="form-control col-md-7 col-xs-12"/>
 							</div>
@@ -142,8 +146,8 @@
 
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="lingkungan_lokasi_ruko">Foto Ruko <span class="required">*</span></label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="file" id="foto_ruko" name="foto_ruko[]" required="required" data-url="<?= base_url('pemilik/upload-handler') ?>" class="form-control col-md-7 col-xs-12" multiple>
+							<div class="col-md-3 col-sm-3 col-xs-12">
+								<input type="file" id="foto_ruko" name="foto_ruko[]" data-url="<?= base_url('pemilik/upload-handler') ?>" class="form-control col-md-7 col-xs-12" multiple>
 							</div>
 						</div>
 						<div class="item form-group">
@@ -177,6 +181,10 @@
 
 <!-- validator -->
 <script src="<?= base_url('assets') ?>/custom/js/validator.js"></script>
+
+<!-- PNotify -->
+<script src="<?= base_url('assets') ?>/vendors/pnotify/dist/pnotify.js"></script>
+<script src="<?= base_url('assets') ?>/vendors/pnotify/dist/pnotify.buttons.js"></script>
 
 <script src="<?= base_url('assets') ?>/vendors/iCheck/icheck.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/jQuery-File-Upload-9.23.0/js/vendor/jquery.ui.widget.js') ?>"></script>
@@ -288,6 +296,21 @@
 	}
 
 	$(function () {
+
+		<?php  
+			$msg = $this->session->flashdata('msg');
+			if (isset($msg)):
+		?>
+
+			new PNotify({
+				title: 'Data Berhasil Disimpan',
+				text: 'Informasi ruko yang anda masukkan telah berhasil tersimpan',
+				type: 'success',
+				styling: 'bootstrap3'
+			});
+
+		<?php endif;  ?>
+
 	    $('#foto_ruko').fileupload({
 	        dataType: 'json',
 	        progressall: function (e, data) {
