@@ -50,20 +50,26 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td align="middle" style="vertical-align: middle;">
-                                    <img src="http://placehold.it/100">
-                                </td>
-                                <td align="middle" style="vertical-align: middle;">Nama ruko</td>
-                                <td align="middle" style="vertical-align: middle;">Rp. 50.000.000,-</td>
-                                <td align="middle" style="vertical-align: middle;">61</td>
-                                <td align="middle" style="vertical-align: middle;">
-                                    <div class="btn-group">
-                                        <a href="#" type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php foreach ($ruko as $row): ?>
+                                <?php  
+                                    $foto = array_values(array_diff(scandir($upload_dir . $row->id_ruko), ['.', '..']));
+                                ?>
+                                <tr>
+                                    <td align="middle" style="vertical-align: middle;">
+                                        <img src="<?= count($foto) > 0 ? base_url('assets/foto/ruko-' . $row->id_ruko . '/' . $foto[0]) : 'http://placehold.it/100' ?>" width="100" height="100">
+                                    </td>
+                                    <td align="middle" style="vertical-align: middle;"><?= $row->ruko ?></td>
+                                    <td align="middle" style="vertical-align: middle;"><?= 'Rp. ' . number_format($row->biaya_sewa, 2, ',', '.') ?></td>
+                                    <td align="middle" style="vertical-align: middle;"><?= $row->luas_bangunan ?></td>
+                                    <td align="middle" style="vertical-align: middle;">
+                                        <div class="btn-group">
+                                            <a href="<?= base_url('pemilik/detail-ruko/' . $row->id_ruko) ?>" type="button" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a>
+                                            <a href="<?= base_url('pemilik/edit-ruko/' . $row->id_ruko) ?>" type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+                                            <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
