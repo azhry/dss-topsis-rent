@@ -8,22 +8,17 @@ class Login extends MY_Controller
   	public function __construct()
 	{
 	    parent::__construct();	
-	    $username 		= $this->session->userdata('username');
-	    $id_hak_akses	= $this->session->userdata('id_hak_akses');
-		if (isset($username, $id_hak_akses))
+	    $username 	= $this->session->userdata('username');
+	    $id_role	= $this->session->userdata('id_role');
+		if (isset($username, $id_role))
 		{
-			switch ($id_hak_akses) 
+			switch ($id_role) 
 			{
 				case 1:
-					redirect('admin');
-					break;
-
-				case 2:
-					redirect('supervisor');
+					redirect('pemilik');
 					break;
 			}
 
-			exit;
 		}
   	}
 
@@ -32,8 +27,8 @@ class Login extends MY_Controller
   	{
   		if ($this->POST('login-submit'))
 		{
-			$this->load->model('user_m');
-			if (!$this->user_m->required_input(['username','password'])) 
+			$this->load->model('pengguna_m');
+			if (!$this->pengguna_m->required_input(['username','password'])) 
 			{
 				$this->flashmsg('Data harus lengkap','warning');
 				redirect('login');
@@ -45,7 +40,7 @@ class Login extends MY_Controller
     			'password'	=> md5($this->POST('password'))
 			];
 
-			$result = $this->user_m->login($this->data);
+			$result = $this->pengguna_m->login($this->data);
 			if (!isset($result)) 
 			{
 				$this->flashmsg('Username atau password salah','danger');

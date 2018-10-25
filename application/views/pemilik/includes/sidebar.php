@@ -13,7 +13,7 @@
                     </div>
                     <div class="profile_info">
                         <span>Selamat datang,</span>
-                        <h2>Pemilik</h2>
+                        <h2><?= $username ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->

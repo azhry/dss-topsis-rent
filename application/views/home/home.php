@@ -16,14 +16,16 @@
 									$foto = scandir(FCPATH . $path);
 									$foto = array_values(array_diff($foto, ['.', '..']));
 								?>
-								<div class="w-clearfix w-preserve-3d promo-card">
-									<img width="100%" src="<?= isset($foto[0]) ? base_url($path . '/' . $foto[0]) : 'http://placehold.it/313x313' ?>">
-									<div class="blog-bar color-pink"></div>
-									<div class="blog-post-text">
-										<?= $row->ruko ?>
-										<div class="blog-description pink-text"><?= 'Rp. ' . number_format($row->biaya_sewa, 2, ',', '.') ?></div>
+								<a href="<?= base_url('home/detail-ruko/' . $row->id_ruko) ?>">
+									<div class="w-clearfix w-preserve-3d promo-card">
+										<img width="100%" src="<?= isset($foto[0]) ? base_url($path . '/' . $foto[0]) : 'http://placehold.it/313x313' ?>">
+										<div class="blog-bar color-pink"></div>
+										<div class="blog-post-text">
+											<?= $row->ruko ?>
+											<div class="blog-description pink-text"><?= 'Rp. ' . number_format($row->biaya_sewa, 2, ',', '.') ?></div>
+										</div>
 									</div>
-								</div>
+								</a>
 							<?php endforeach; ?>
 				      	</div>
 				    </div>

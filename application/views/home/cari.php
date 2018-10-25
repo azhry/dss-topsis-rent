@@ -5,6 +5,33 @@
 <link href="<?= base_url('assets') ?>/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
 <link href="<?= base_url('assets') ?>/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
 
+<style type="text/css">
+	#loader {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  z-index: 1;
+	  margin: -75px 0 0 -75px;
+	  border: 8px solid #f3f3f3;
+	  border-radius: 50%;
+	  border-top: 8px solid #3498db;
+	  width: 50px;
+	  height: 50px;
+	  -webkit-animation: spin 2s linear infinite;
+	  animation: spin 2s linear infinite;
+	}
+
+	@-webkit-keyframes spin {
+	  0% { -webkit-transform: rotate(0deg); }
+	  100% { -webkit-transform: rotate(360deg); }
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+</style>
+
 <div class="right_col" role="main">
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
@@ -205,21 +232,26 @@
 							<div class="promotion-section">
 							    <div class="w-container promotion-container">
 									<div class="promo-flex" style="margin: 0 !important; overflow-y: scroll; height: 700px;">
-										<?php foreach ($ruko as $row): ?>
-											<?php  
-												$path = 'assets/foto/ruko-' . $row['id_ruko'];
-												$foto = scandir(FCPATH . $path);
-												$foto = array_values(array_diff($foto, ['.', '..']));
-											?>
-											<div class="w-clearfix w-preserve-3d promo-card">
-												<img width="100%" src="<?= isset($foto[0]) ? base_url($path . '/' . $foto[0]) : 'http://placehold.it/313x313' ?>">
-												<div class="blog-bar color-pink"></div>
-												<div class="blog-post-text">
-													<?= $row['ruko'] ?>
-													<div class="blog-description pink-text"><?= 'Rp. ' . number_format($row['biaya_sewa'], 2, ',', '.') ?></div>
-												</div>
-											</div>
-										<?php endforeach; ?>
+										<div id="loader" style="display: none;"></div>
+										<div style="height: 100%;" id="result">
+											<?php foreach ($ruko as $row): ?>
+												<?php  
+													$path = 'assets/foto/ruko-' . $row['id_ruko'];
+													$foto = scandir(FCPATH . $path);
+													$foto = array_values(array_diff($foto, ['.', '..']));
+												?>
+												<a href="<?= base_url('home/detail-ruko/' . $row['id_ruko']) ?>">
+													<div class="w-clearfix w-preserve-3d promo-card">
+														<img width="100%" src="<?= isset($foto[0]) ? base_url($path . '/' . $foto[0]) : 'http://placehold.it/313x313' ?>">
+														<div class="blog-bar color-pink"></div>
+														<div class="blog-post-text">
+															<?= $row['ruko'] ?>
+															<div class="blog-description pink-text"><?= 'Rp. ' . number_format($row['biaya_sewa'], 2, ',', '.') ?></div>
+														</div>
+													</div>
+												</a>
+											<?php endforeach; ?>
+										</div>
 							      	</div>
 							    </div>
 							</div>
@@ -240,17 +272,56 @@
 
 <script type="text/javascript">
 	function cari() {
+		const data = {
+			cari: true,
+			biaya_sewa: $('#biaya_sewa').val(),
+			luas_bangunan: $('#luas_bangunan').val(),
+			akses_menuju_lokasi: get_checkbox_values('akses_menuju_lokasi[]'),
+			pusat_keramaian: get_checkbox_values('pusat_keramaian[]'),
+			zona_parkir: $('#zona_parkir').val(),
+			jumlah_pesaing_serupa: $('#jumlah_pesaing_serupa').val(),
+			tingkat_konsumtif_masyarakat: $('#tingkat_konsumtif_masyarakat').val(),
+			lingkungan_lokasi_ruko: $('#lingkungan_lokasi_ruko').val()
+		};
+
 		$.ajax({
 			url: '<?= base_url('home/rank') ?>',
 			type: 'POST',
-			data: {},
+			data: data,
 			beforeSend: function() {
-
+				$('#result').css('display', 'none');
+				$('#loader').css('display', 'block');
 			},
 			success: function(response) {
+				let json = $.parseJSON(response);
+				$('#result').css('display', 'block');
+				$('#loader').css('display', 'none');
 
+				let html = '';
+				for (let i = 0; i < json.length; i++) {
+					html += '<a href="<?= base_url('home/detail-ruko') ?>/' + json[i].id_ruko + '">' +
+						'<div class="w-clearfix w-preserve-3d promo-card">' +
+								'<img width="100%" src="' + json[i].foto + '">' +
+								'<div class="blog-bar color-pink"></div>' +
+								'<div class="blog-post-text">' +
+									json[i].ruko +
+									'<div class="blog-description pink-text">' + json[i].biaya_sewa + '</div>' +
+								'</div>' +
+							'</div>' +
+						'</a>';
+				}
+
+				$('#result').html((json.length > 0 ? html : '<p>No results found</p>'));
 			},
-			error: function(error) { console.log(error); }
+			error: function(error) { 
+				console.log(error.responseText); 
+				$('#result').css('display', 'block');
+				$('#loader').css('display', 'none');	
+			}
 		});
+	}
+
+	function get_checkbox_values(name) {
+		return $('input[name="' + name + '"]:checked').map(function() { return $(this).val(); }).get();
 	}
 </script>
