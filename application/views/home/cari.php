@@ -264,7 +264,7 @@
 	</div>
 </div>
 
-<!-- PNotify -->
+<!-- PNotifyy -->
 <script src="<?= base_url('assets') ?>/vendors/pnotify/dist/pnotify.js"></script>
 <script src="<?= base_url('assets') ?>/vendors/pnotify/dist/pnotify.buttons.js"></script>
 
