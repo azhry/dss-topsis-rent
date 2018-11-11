@@ -242,7 +242,7 @@
 												?>
 												<a href="<?= base_url('home/detail-ruko/' . $row['id_ruko']) ?>">
 													<div class="w-clearfix w-preserve-3d promo-card">
-														<img width="100%" src="<?= isset($foto[0]) ? base_url($path . '/' . $foto[0]) : 'http://placehold.it/313x313' ?>">
+														<img width="100%" height="200" src="<?= isset($foto[0]) ? base_url($path . '/' . $foto[0]) : 'http://placehold.it/313x313' ?>">
 														<div class="blog-bar color-pink"></div>
 														<div class="blog-post-text">
 															<?= $row['ruko'] ?>
@@ -272,6 +272,13 @@
 
 <script type="text/javascript">
 	function cari() {
+		<?php  
+			$username = $this->session->userdata('username');
+			if (!isset($username)):
+		?>
+		window.location.href = '<?= base_url('login') ?>';
+		<?php endif; ?>
+		
 		const data = {
 			cari: true,
 			biaya_sewa: $('#biaya_sewa').val(),
@@ -301,7 +308,7 @@
 				for (let i = 0; i < json.length; i++) {
 					html += '<a href="<?= base_url('home/detail-ruko') ?>/' + json[i].id_ruko + '">' +
 						'<div class="w-clearfix w-preserve-3d promo-card">' +
-								'<img width="100%" src="' + json[i].foto + '">' +
+								'<img width="100%" height="200" src="' + json[i].foto + '">' +
 								'<div class="blog-bar color-pink"></div>' +
 								'<div class="blog-post-text">' +
 									json[i].ruko +

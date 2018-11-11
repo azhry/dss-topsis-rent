@@ -100,7 +100,13 @@
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah_pesaing_serupa">Jumlah Pesaing Serupa <span class="required">*</span></label>
 							<div class="col-md-3 col-sm-3 col-xs-12">
-								<input type="number" id="jumlah_pesaing_serupa" name="jumlah_pesaing_serupa" required="required" min="0" class="form-control col-md-7 col-xs-12">
+								<select class="form-control col-md-7 col-xs-12" id="jumlah_pesaing_serupa" name="jumlah_pesaing_serupa" required>
+									<option value="0">Tidak Ada</option>
+									<option value="1">1 - 2 Pesaing</option>
+									<option value="3">3 - 4 Pesaing</option>
+									<option value="5">5 - 6 Pesaing</option>
+									<option value="7">&gt; 6 Pesaing</option>
+								</select>
 							</div>
 						</div>
 						<div class="item form-group">

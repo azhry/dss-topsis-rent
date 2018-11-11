@@ -100,17 +100,7 @@
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah_pesaing_serupa">Jumlah Pesaing Serupa <span class="required">*</span></label>
 							<div class="col-md-3 col-sm-3 col-xs-12">
-								<?php  
-									$opt = [
-										'0'	=> 'Tidak Ada',
-										'1' => '1 - 2 Pesaing',
-										'3' => '3 - 4 Pesaing',
-										'5' => '5 - 6 Pesaing',
-										'7' => '> 6 Pesaing'
-									];
-
-									echo form_dropdown('jumlah_pesaing_serupa', $opt, $ruko->jumlah_pesaing_serupa, ['id' => 'jumlah_pesaing_serupa', 'class' => 'form-control col-md-7 col-xs-12']);
-								?>
+								<input type="number" id="jumlah_pesaing_serupa" name="jumlah_pesaing_serupa" required="required" min="0" class="form-control col-md-7 col-xs-12" value="<?= $ruko->jumlah_pesaing_serupa ?>">
 							</div>
 						</div>
 						<div class="item form-group">

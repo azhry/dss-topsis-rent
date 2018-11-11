@@ -18,7 +18,7 @@
 								?>
 								<a href="<?= base_url('home/detail-ruko/' . $row->id_ruko) ?>">
 									<div class="w-clearfix w-preserve-3d promo-card">
-										<img width="100%" src="<?= isset($foto[0]) ? base_url($path . '/' . $foto[0]) : 'http://placehold.it/313x313' ?>">
+										<img width="100%" height="200" src="<?= isset($foto[0]) ? base_url($path . '/' . $foto[0]) : 'http://placehold.it/313x313' ?>">
 										<div class="blog-bar color-pink"></div>
 										<div class="blog-post-text">
 											<?= $row->ruko ?>

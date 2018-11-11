@@ -17,6 +17,14 @@ class Login extends MY_Controller
 				case 1:
 					redirect('pemilik');
 					break;
+
+				case 2:
+					redirect('admin');
+					break;
+
+				default:
+					redirect('home');
+					break;
 			}
 
 		}

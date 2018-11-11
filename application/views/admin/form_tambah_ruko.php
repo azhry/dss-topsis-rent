@@ -9,26 +9,26 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 				<div class="x_content">
-					<?= form_open_multipart('pemilik/edit-ruko/' . $id_ruko, ['class' => 'form-horizontal form-label-left']) ?>
-						<span class="section">Edit Informasi Ruko</span>
+					<?= form_open_multipart('pemilik/tambah-ruko', ['class' => 'form-horizontal form-label-left']) ?>
+						<span class="section">Informasi Ruko</span>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="ruko">Alamat Ruko  <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input id="ruko" class="form-control col-md-7 col-xs-12" data-validate-length-range="2" name="ruko" placeholder="Contoh: Jl. Mangkunegara" required="required" type="text" value="<?= $ruko->ruko ?>"/>
+								<input id="ruko" class="form-control col-md-7 col-xs-12" data-validate-length-range="2" name="ruko" placeholder="Contoh: Jl. Mangkunegara" required="required" type="text"/>
 							</div>
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="biaya_sewa">Biaya Sewa <span class="required">*</span></label>
 							<div class="col-md-3 col-sm-3 col-xs-12 input-group" style="padding-left: 10px;">
 								<span class="input-group-addon" aria-hidden="true">Rp.</span>
-								<input type="number" id="biaya_sewa" name="biaya_sewa" required="required" min="1" class="form-control" value="<?= $ruko->biaya_sewa ?>">
+								<input type="number" id="biaya_sewa" name="biaya_sewa" required="required" min="1" class="form-control">
 							</div>
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="luas_bangunan">Luas Bangunan <span class="required">*</span></label>
 							<div class="col-md-3 col-sm-3 col-xs-12 input-group" style="padding-left: 10px;">
-								<input type="number" id="luas_bangunan" name="luas_bangunan" required="required" min="1" class="form-control col-md-7 col-xs-12" value="<?= $ruko->luas_bangunan ?>">
+								<input type="number" id="luas_bangunan" name="luas_bangunan" required="required" min="1" class="form-control col-md-7 col-xs-12">
 								<span class="input-group-addon" aria-hidden="true">m²</span>
 							</div>
 						</div>
@@ -38,20 +38,20 @@
 								<p style="padding: 5px;">
 									<div class="row">
 										<div class="col-md-4">
-											<input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi1" value="Pejalan Kaki" data-parsley-mincheck="1" <?= in_array('Pejalan Kaki', $akses_menuju_lokasi) ? 'checked' : '' ?> class="flat" /> Pejalan Kaki
+											<input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi1" value="Pejalan Kaki" data-parsley-mincheck="1" class="flat" /> Pejalan Kaki
 					                        <br/><br/>
 
-					                        <input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi2" value="Angkutan Umum" <?= in_array('Angkutan Umum', $akses_menuju_lokasi) ? 'checked' : '' ?> class="flat" /> Angkutan Umum
+					                        <input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi2" value="Angkutan Umum" class="flat" /> Angkutan Umum
 					                        <br/><br/>
 
-					                        <input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi3" value="Kendaraan Mobil" <?= in_array('Kendaraan Mobil', $akses_menuju_lokasi) ? 'checked' : '' ?> class="flat" /> Kendaraan Mobil
+					                        <input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi3" value="Kendaraan Mobil" class="flat" /> Kendaraan Mobil
 					                        <br/><br/>
 										</div>
 										<div class="col-md-4">
-											<input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi4" value="Kendaraan Motor" <?= in_array('Kendaraan Motor', $akses_menuju_lokasi) ? 'checked' : '' ?> class="flat" /> Kendaraan Motor
+											<input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi4" value="Kendaraan Motor" class="flat" /> Kendaraan Motor
 					                        <br/><br/>
 
-					                        <input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi5" value="Semuanya" <?= in_array('Semuanya', $akses_menuju_lokasi) ? 'checked' : '' ?> class="flat" /> Semuanya
+					                        <input type="checkbox" name="akses_menuju_lokasi[]" id="akses_menuju_lokasi5" value="Semuanya" class="flat" /> Semuanya
 					                        <br/><br/>
 										</div>
 									</div>
@@ -64,26 +64,26 @@
 								<p style="padding: 5px;">
 									<div class="row">
 										<div class="col-md-4">
-											<input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian1" value="Kantor" <?= in_array('Kantor', $pusat_keramaian) ? 'checked' : '' ?> data-parsley-mincheck="1" class="flat" /> Kantor
+											<input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian1" value="Kantor" data-parsley-mincheck="1" class="flat" /> Kantor
 					                        <br/><br/>
 
-					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian2" value="Mall" <?= in_array('Mall', $pusat_keramaian) ? 'checked' : '' ?> class="flat" /> Mall
+					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian2" value="Mall" class="flat" /> Mall
 					                        <br/><br/>
 
-					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian3" value="Pasar" <?= in_array('Pasar', $pusat_keramaian) ? 'checked' : '' ?> class="flat" /> Pasar
+					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian3" value="Pasar" class="flat" /> Pasar
 					                        <br/><br/>
 
-					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian4" value="Rumah Sakit" <?= in_array('Rumah Sakit', $pusat_keramaian) ? 'checked' : '' ?> class="flat" /> Rumah Sakit
+					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian4" value="Rumah Sakit" class="flat" /> Rumah Sakit
 			                        		<br/><br/>
 										</div>
 										<div class="col-md-4">
-											<input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian5" value="Sekolah" <?= in_array('Sekolah', $pusat_keramaian) ? 'checked' : '' ?> class="flat" /> Sekolah
+											<input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian5" value="Sekolah" class="flat" /> Sekolah
 					                        <br/><br/>
 
-					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian6" value="Kampus" <?= in_array('Kampus', $pusat_keramaian) ? 'checked' : '' ?> class="flat" /> Kampus
+					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian6" value="Kampus" class="flat" /> Kampus
 					                        <br/><br/>
 
-					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian7" value="Tidak Ada" <?= in_array('Tidak Ada', $pusat_keramaian) ? 'checked' : '' ?> class="flat" /> Tidak Ada
+					                        <input type="checkbox" name="pusat_keramaian[]" id="pusat_keramaian7" value="Tidak Ada" class="flat" /> Tidak Ada
 					                        <br/><br/>
 										</div>
 									</div>
@@ -93,55 +93,41 @@
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="zona_parkir">Zona Parkir <span class="required">*</span></label>
 							<div class="col-md-3 col-sm-3 col-xs-12 input-group" style="padding-left: 10px;">
-								<input type="number" id="zona_parkir" name="zona_parkir" required="required" min="1" class="form-control col-md-7 col-xs-12" value="<?= $ruko->zona_parkir ?>">
+								<input type="number" id="zona_parkir" name="zona_parkir" required="required" min="1" class="form-control col-md-7 col-xs-12">
 								<span class="input-group-addon" aria-hidden="true">m²</span>
 							</div>
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="jumlah_pesaing_serupa">Jumlah Pesaing Serupa <span class="required">*</span></label>
 							<div class="col-md-3 col-sm-3 col-xs-12">
-								<?php  
-									$opt = [
-										'0'	=> 'Tidak Ada',
-										'1' => '1 - 2 Pesaing',
-										'3' => '3 - 4 Pesaing',
-										'5' => '5 - 6 Pesaing',
-										'7' => '> 6 Pesaing'
-									];
-
-									echo form_dropdown('jumlah_pesaing_serupa', $opt, $ruko->jumlah_pesaing_serupa, ['id' => 'jumlah_pesaing_serupa', 'class' => 'form-control col-md-7 col-xs-12']);
-								?>
+								<input type="number" id="jumlah_pesaing_serupa" name="jumlah_pesaing_serupa" required="required" min="0" class="form-control col-md-7 col-xs-12">
 							</div>
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tingkat_konsumtif_masyarakat">Tingkat Konsumtif Masyarakat <span class="required">*</span></label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<?php  
-									$data = [
-										'Sangat Tinggi'	=> 'Sangat Tinggi',
-										'Tinggi'		=> 'Tinggi',
-										'Cukup Tinggi'	=> 'Cukup Tinggi',
-										'Rendah'		=> 'Rendah',
-										'Sangat Rendah'	=> 'Sangat Rendah'
-									];
-									echo form_dropdown('tingkat_konsumtif_masyarakat', $data, $ruko->tingkat_konsumtif_masyarakat, ['id' => 'tingkat_konsumtif_masyarakat', 'class' => 'form-control col-md-7 col-xs-12', 'required' => 'required']);
-								?>
+								<select type="select" id="tingkat_konsumtif_masyarakat" name="tingkat_konsumtif_masyarakat" class="form-control col-md-7 col-xs-12" data-validate-length-range="1" required="required">
+									<option value="">Pilih..</option>
+									<option value="Sangat Tinggi">Sangat Tinggi</option>
+									<option value="Tinggi">Tinggi</option>
+									<option value="Cukup Tinggi">Cukup Tinggi</option>
+									<option value="Rendah">Rendah</option>
+									<option value="Sangat Rendah">Sangat Rendah</option>
+								</select>
 							</div>
 						</div>
 						<div class="item form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="lingkungan_lokasi_ruko">Lingkungan Lokasi Ruko <span class="required">*</span></label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<?php  
-									$data = [
-										'Pertengahan Kota'			=> 'Pertengahan Kota',
-										'Lingkungan Perkampungan'	=> 'Lingkungan Perkampungan',
-										'Lingkungan Perumahan'		=> 'Lingkungan Perumahan',
-										'Jalan Utama'				=> 'Jalan Utama',
-										'Jalan Raya Kota'			=> 'Jalan Raya Kota',
-										'Jalan Lintas Kota'			=> 'Jalan Lintas Kota'
-									];
-									echo form_dropdown('lingkungan_lokasi_ruko', $data, $ruko->lingkungan_lokasi_ruko, ['id' => 'lingkungan_lokasi_ruko', 'class' => 'form-control col-md-7 col-xs-12', 'required' => 'required']);
-								?>
+								<select type="select" id="lingkungan_lokasi_ruko" name="lingkungan_lokasi_ruko" class="form-control col-md-7 col-xs-12" data-validate-length-range="1" required="required">
+									<option value="">Pilih..</option>
+									<option value="Pertengahan Kota">Pertengahan Kota</option>
+									<option value="Lingkungan Perkampungan">Lingkungan Perkampungan</option>
+									<option value="Lingkungan Perumahan">Lingkungan Perumahan</option>
+									<option value="Jalan Utama">Jalan Utama</option>
+									<option value="Jalan Raya Kota">Jalan Raya Kota</option>
+									<option value="Jalan Lintas Kota">Jalan Lintas Kota</option>
+								</select>
 							</div>
 						</div>
 
@@ -172,48 +158,17 @@
 			                    <div class="x_panel">
 			                    	<div class="x_content">
 			                    		<ul class="list-unstyled msg_list" role="menu" id="list-files">
-			                    			<?php $i = 0; foreach ($files as $file): ?>
-				                    			<li id="file-<?= $i ?>">
-													<a>
-														<div class="row">
-															<div class="col-md-4">
-																<span class="image"><img style="width: 50px; height: 50px;" src="<?= $upload_path . '/' . $file ?>" alt="Uploaded Image" /></span>
-															</div>
-															<div class="col-md-8">
-																	<div class="row">
-																		<div class="col-md-12">
-																			<span class="pull-left"><?= $file ?></span>
-																			<span class="pull-right">
-																				<i onclick="removePhoto('#file-<?= $i++ ?>', '<?= $file ?>');" class="fa fa-close"></i>
-																			</span>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-md-12">
-																			<span class="message">
-																				<?= round((filesize($upload_dir . '/' . $file) / 1024), 2) . ' KB' ?>
-																			</span>
-																		</div>
-																	</div>
-															</div>
-														</div>
-													</a>
-													<input type="hidden" value="<?= $file ?>" name="uploaded_files[]"/>
-												</li>
-											<?php endforeach; ?>
 										</ul>	
 			                    	</div>
 			                    </div>
 							</div>
 						</div>
-
-						<div id="hidden-deleted-photo"></div>
                       
 						<div class="ln_solid"></div>
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
 								<button type="reset" class="btn btn-primary">Reset</button>
-								<input id="submit" name="submit" type="submit" class="btn btn-success" value="Edit"/>
+								<input id="submit" name="submit" type="submit" class="btn btn-success" value="Submit"/>
 							</div>
 						</div>
                     <?= form_close() ?>
@@ -237,19 +192,13 @@
 <script type="text/javascript" src="<?= base_url('assets/jQuery-File-Upload-9.23.0/js/jquery.fileupload.js') ?>"></script>
 
 <script type="text/javascript">
-	function removePhoto(obj, file) {
-		$('#hidden-deleted-photo').append('<input type="hidden" value="' + file + '" name="deleted_photo[]"/>');
-		$(obj).remove();
-	}
-
 	function initMap() {
 		// koordinat palembang
-		let lat = <?= $ruko->latitude ?>;
-		let lng = <?= $ruko->longitude ?>;
-		let currentLocation = new google.maps.LatLng(lat, lng);
+		let lat = -2.990934;
+		let lng = 104.7754;
 
 		let map = new google.maps.Map(document.getElementById('map'), {
-			center: currentLocation,
+			center: {lat: lat, lng: lng},
 			zoom: 12
 		});
 
@@ -266,12 +215,6 @@
         });
 
         let markers = [];
-        // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-			map: map,
-			position: currentLocation
-        }));
-
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener('places_changed', function() {
@@ -395,7 +338,7 @@
 							Math.round((file.size / 1024) * 100) / 100 + ' KB' +
 						'</span>' +
 					'</a>' +
-					'<input type="hidden" value="' + file.name + '" name="new_uploaded_files[]"/>' +
+					'<input type="hidden" value="' + file.name + '" name="uploaded_files[]"/>' +
 				'</li>');
 	        }
 	    });

@@ -11,7 +11,7 @@ class Home extends MY_Controller
 	public function index()
 	{
 		$this->load->model('ruko_m');
-		$this->data['ruko']		= $this->ruko_m->get_by_order('id_ruko', 'DESC');
+		$this->data['ruko']		= $this->ruko_m->get_by_order('id_ruko', 'DESC', ['status' => 'Verified']);
 		$this->data['title']	= 'Home';
 		$this->data['content']	= 'home';
 		$this->template($this->data, $this->module);	
@@ -23,7 +23,7 @@ class Home extends MY_Controller
 		$this->check_allowance(!isset($this->data['id_ruko']));
 
 		$this->load->model('ruko_m');
-		$this->data['ruko']			= $this->ruko_m->get_row(['id_ruko' => $this->data['id_ruko']]);
+		$this->data['ruko']			= $this->ruko_m->get_ruko_row(['id_ruko' => $this->data['id_ruko'], 'status' => 'Verified']);
 		$this->check_allowance(!isset($this->data['ruko']), ['Data ruko tidak ditemukan', 'danger']);
 
 		$this->data['upload_dir'] 			= FCPATH . 'assets/foto/ruko-' . $this->data['ruko']->id_ruko;
@@ -43,9 +43,9 @@ class Home extends MY_Controller
 		
 		$this->data['criteria']	= $this->topsis->criteria;
 		$this->data['config']	= $this->data['criteria']->get_config();
-		$this->data['ruko']		= json_decode(json_encode($this->ruko_m->get()), true);
+		$this->data['ruko']		= json_decode(json_encode($this->ruko_m->get(['status' => 'Verified'])), true);
 		
-		$matrix = $this->topsis->fit($this->data['ruko'], ['ruko', 'id_ruko', 'id_pengguna', 'latitude', 'longitude']);
+		$matrix = $this->topsis->fit($this->data['ruko'], ['ruko', 'id_ruko', 'id_pengguna', 'latitude', 'longitude', 'status']);
 		$weight = $this->topsis->weight();
 		$distance = $this->topsis->solution_distance();
 		$rank = $this->topsis->rank();
@@ -234,10 +234,19 @@ class Home extends MY_Controller
 				$cond .= 'lingkungan_lokasi_ruko = "' . $lingkungan_lokasi_ruko . '" ';
 			}
 
+			if (strlen($cond) > 0)
+			{
+				$cond .= 'AND status = "Verified"';
+			}
+			else
+			{
+				$cond .= 'status = "Verified"';
+			}
+
 			$this->data['ruko']	= $this->ruko_m->get($cond);
 
 			$this->load->library('Topsis/topsis');
-			$this->topsis->fit($this->data['ruko'], ['ruko', 'id_ruko', 'id_pengguna', 'latitude', 'longitude']);
+			$this->topsis->fit($this->data['ruko'], ['ruko', 'id_ruko', 'id_pengguna', 'latitude', 'longitude', 'status']);
 			$this->topsis->weight();
 			$this->topsis->solution_distance();
 			$rank = $this->topsis->rank();

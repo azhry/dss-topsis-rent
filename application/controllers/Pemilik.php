@@ -13,7 +13,15 @@ class Pemilik extends MY_Controller
 	    $this->data['id_role']		= $this->session->userdata('id_role');
 		if (!isset($this->data['id_pengguna'], $this->data['username'], $this->data['id_role']))
 		{
+			$this->session->sess_destroy();
 			$this->flashmsg('Anda harus login terlebih dahulu', 'danger');
+			redirect('login');
+		}
+
+		if ($this->data['id_role'] != 1)
+		{
+			$this->session->sess_destroy();
+			$this->flashmsg('Anda harus login sebagai pemilik ruko', 'danger');
 			redirect('login');
 		}
 	}

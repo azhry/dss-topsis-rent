@@ -43,10 +43,6 @@
 										</td>
 										<td><?= $ruko->luas_bangunan . ' m²' ?></td>
 									</tr>
-									<?php  
-										$username = $this->session->userdata('username');
-										if (isset($username)):
-									?>
 									<tr>
 										<td>
 											<b>Akses Menuju Lokasi</b>
@@ -79,14 +75,12 @@
 											</ul>
 										</td>
 									</tr>
-									<?php endif; ?>
 									<tr>
 										<td>
 											<b>Zona Parkir</b>
 										</td>
 										<td><?= $ruko->zona_parkir . ' m²' ?></td>
 									</tr>
-									<?php if (isset($username)): ?>
 									<tr>
 										<td>
 											<b>Jumlah Pesaing</b>
@@ -105,19 +99,6 @@
 										</td>
 										<td><?= $ruko->lingkungan_lokasi_ruko ?></td>
 									</tr>
-									<tr>
-										<td>
-											<b>Pemilik</b>
-										</td>
-										<td><?= $ruko->nama ?></td>
-									</tr>
-									<tr>
-										<td>
-											<b>Kontak</b>
-										</td>
-										<td><?= $ruko->kontak ?></td>
-									</tr>
-									<?php endif; ?>
 								</tbody>
 							</table>
 						</div>

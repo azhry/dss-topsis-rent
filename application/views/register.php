@@ -31,26 +31,45 @@
         <div class="animate form login_form">
           <section class="login_content">
             <?= $this->session->flashdata('msg') ?>
-            <?= form_open('login') ?>
-              <h1>Login Form</h1>
+            <?= form_open('register') ?>
+              <h1>Register Form</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama" required />
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Email" name="email" required />
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Kontak" name="kontak" required />
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Alamat" name="alamat" required />
+              </div>
+              <div>
+                <select required class="form-control" name="id_role">
+                  <option value="">Pilih Jenis Akun</option>
+                  <option value="1">Pemilik Ruko</option>
+                  <option value="3">Pengguna Biasa</option>
+                </select>
+              </div><br/>
               <div>
                 <input type="text" class="form-control" placeholder="Username" name="username" required />
               </div>
               <div>
                 <input type="password" class="form-control" placeholder="Password" name="password" required />
               </div>
-              <div style="margin-left: 0px !important;">
-                <input type="submit" name="login-submit" value="Login" class="btn btn-lg btn-success btn-block">
+              <div>
+                <input type="password" class="form-control" placeholder="Password lagi" name="rpassword" required />
               </div>
-              <!-- <div>
-                  <a class="reset_pass" href="#">Lost your password?</a>
-              </div> -->
+              <div style="margin-left: 0px !important;">
+                <input type="submit" name="register-submit" value="Daftar" class="btn btn-lg btn-success btn-block">
+              </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Belum punya akun?
-                  <a href="<?= base_url('register') ?>" class="to_register"> Daftar sekarang! </a>
+                <p class="change_link">Sudah mendaftar?
+                  <a href="<?= base_url('login') ?>" class="to_register"> Login </a>
                 </p>
               </div>
             </form>
