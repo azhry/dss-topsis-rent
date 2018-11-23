@@ -38,7 +38,47 @@ class Home extends MY_Controller
 
 	public function cari()
 	{
+		$this->load->model('kriteria_m');
 		$this->load->library('Topsis/topsis');
+		$kriteria = $this->kriteria_m->get();
+		$config = [];
+		foreach ($kriteria as $row)
+		{
+			$details = json_decode($row->details, true);
+
+			if ($row->type == 'range')
+			{
+				$max = PHP_INT_MIN;
+				$min = PHP_INT_MAX;
+				$max_idx = -1;
+				$min_idx = -1;
+				for ($i = 0; $i < count($details); $i++)
+				{
+					if ($details[$i]['max'] > $max)
+					{
+						$max = $details[$i]['max'];
+						$max_idx = $i;
+					}
+
+					if ($details[$i]['min'] > $min)
+					{
+						$min = $details[$i]['min'];
+						$min_idx = $i;
+					}
+				}
+				$details[$max_idx]['max'] = null;
+				$details[$min_idx]['min'] = null;
+			}
+
+			$config[$row->key] = [
+				'key'		=> $row->key,
+				'weight'	=> $row->weight,
+				'label'		=> $row->label,
+				'type'		=> $row->type,
+				'values'	=> $details
+			];
+		}
+		$this->topsis->set_config($config);
 		$this->load->model('ruko_m');
 		
 		$this->data['criteria']	= $this->topsis->criteria;
@@ -245,7 +285,47 @@ class Home extends MY_Controller
 
 			$this->data['ruko']	= $this->ruko_m->get($cond);
 
+			$this->load->model('kriteria_m');
 			$this->load->library('Topsis/topsis');
+			$kriteria = $this->kriteria_m->get();
+			$config = [];
+			foreach ($kriteria as $row)
+			{
+				$details = json_decode($row->details);
+
+				if ($row->type == 'range')
+				{
+					$max = PHP_INT_MIN;
+					$min = PHP_INT_MAX;
+					$max_idx = -1;
+					$min_idx = -1;
+					for ($i = 0; $i < count($details); $i++)
+					{
+						if ($details[$i]->max > $max)
+						{
+							$max = $details[$i]->max;
+							$max_idx = $i;
+						}
+
+						if ($details[$i]->min > $min)
+						{
+							$min = $details[$i]->min;
+							$min_idx = $i;
+						}
+					}
+					$details[$max_idx]->max = null;
+					$details[$min_idx]->min = null;
+				}
+
+				$config[$row->key] = [
+					'key'		=> $row->key,
+					'weight'	=> $row->weight,
+					'label'		=> $row->label,
+					'type'		=> $row->type,
+					'values'	=> $details
+				];
+			}
+			$this->topsis->set_config($config);
 			$this->topsis->fit($this->data['ruko'], ['ruko', 'id_ruko', 'id_pengguna', 'latitude', 'longitude', 'status']);
 			$this->topsis->weight();
 			$this->topsis->solution_distance();
