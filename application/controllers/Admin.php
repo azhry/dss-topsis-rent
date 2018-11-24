@@ -94,6 +94,38 @@ class Admin extends MY_Controller
 		echo json_encode($response);
 	}
 
+	public function kriteria()
+	{
+		$this->load->model('kriteria_m');
+
+		$this->data['id_kriteria']	= $this->uri->segment(3);
+		if (isset($this->data['id_kriteria']))
+		{
+			$this->kriteria_m->delete($this->data['id_kriteria']);
+			$this->flashmsg('Kriteria berhasil dihapus');
+			redirect('admin/kriteria');
+		}
+
+		$this->data['kriteria']		= $this->kriteria_m->get();
+		$this->data['title']		= 'Daftar Kriteria';
+		$this->data['content']		= 'kriteria';
+		$this->template($this->data, $this->module);
+	}
+
+	public function detail_kriteria()
+	{
+		$this->data['id_kriteria']	= $this->uri->segment(3);
+		$this->check_allowance(!isset($this->data['id_kriteria']));
+
+		$this->load->model('kriteria_m');
+		$this->data['kriteria']			= $this->kriteria_m->get_row(['id_kriteria' => $this->data['id_kriteria']]);
+		$this->check_allowance(!isset($this->data['kriteria']), ['Data kriteria tidak ditemukan', 'danger']);
+
+		$this->data['title']				= 'Detail Kriteria';
+		$this->data['content']				= 'detail_kriteria';
+		$this->template($this->data, $this->module);
+	}
+
 	public function tambah_kriteria()
 	{
 		if ($this->POST('submit'))

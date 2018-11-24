@@ -25,6 +25,7 @@
                         <ul class="nav side-menu">
                             <li><a href="<?= base_url('admin') ?>"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li><a href="<?= base_url('admin/daftar-ruko') ?>"><i class="fa fa-table"></i> Daftar Ruko</a></li>
+                            <li><a href="<?= base_url('admin/kriteria') ?>"><i class="fa fa-table"></i> Daftar Kriteria</a></li>
                         </ul>
                     </div>
                 </div>
