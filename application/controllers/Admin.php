@@ -74,6 +74,7 @@ class Admin extends MY_Controller
 			$ruko = $this->ruko_m->get_row(['id_ruko' => $this->POST('id_ruko')]);
 			if (isset($ruko))
 			{
+				$this->load->model('pengguna_m');
 				switch ($ruko->status)
 				{
 					case 'Verified':
@@ -84,6 +85,15 @@ class Admin extends MY_Controller
 					case 'Pending':
 						$this->ruko_m->update($this->POST('id_ruko'), ['status' => 'Verified']);
 						$response['data'] = 'Verified';
+						$pengguna = $this->pengguna_m->get_row(['id_pengguna' => $ruko->id_pengguna]);
+						if (isset($pengguna))
+						{
+							$this->load->library('CI_PHPMailer/ci_phpmailer');
+							$this->ci_phpmailer->setServer('smtp.gmail.com');
+							$this->ci_phpmailer->setAuth('testdevsmail@gmail.com', '4kuGanteng');
+							$this->ci_phpmailer->setAlias('admin@sistemsewaruko.com', 'Sistem Ruko');
+							$this->ci_phpmailer->sendMessage($pengguna->email, 'Status Verifikasi Ruko ' . $ruko->ruko, 'Ruko ' . $ruko->ruko . ' telah berhasil diverifikasi');
+						}
 						break;
 				}
 
