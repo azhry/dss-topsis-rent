@@ -38,6 +38,16 @@ class Pemilik extends MY_Controller
 	public function daftar_ruko()
 	{
 		$this->load->model('ruko_m');
+		$this->data['id_ruko']		= $this->uri->segment(3);
+		if (isset($this->data['id_ruko']))
+		{
+			$this->ruko_m->delete($this->data['id_ruko']);
+			$assets_url 	= FCPATH . 'assets/';
+			$uploaded_dir 	= $assets_url . 'foto/ruko-' . $this->data['id_ruko'];
+			$this->remove_directory($uploaded_dir);
+			$this->flashmsg('Ruko berhasil dihapus', 'danger');
+			redirect('pemilik/daftar-ruko');
+		}
 
 		$this->data['upload_dir'] 	= FCPATH . 'assets/foto/ruko-';
 		$this->data['ruko']			= $this->ruko_m->get(['id_pengguna' => $this->data['id_pengguna']]);

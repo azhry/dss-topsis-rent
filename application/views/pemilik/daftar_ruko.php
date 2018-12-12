@@ -27,6 +27,11 @@
                 </div>
                 <div class="x_content">
                     <div class="row">
+                        <div class="col-md-12">
+                            <?= $this->session->flashdata('msg') ?>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-8">
                             <p class="text-muted font-13 m-b-30">
                                 Berikut ini merupakan daftar ruko anda berdasarkan data yang telah anda masukan sebelumnya
@@ -65,7 +70,7 @@
                                         <div class="btn-group">
                                             <a href="<?= base_url('pemilik/detail-ruko/' . $row->id_ruko) ?>" type="button" class="btn btn-info"><i class="fa fa-eye"></i> Detail</a>
                                             <a href="<?= base_url('pemilik/edit-ruko/' . $row->id_ruko) ?>" type="button" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-                                            <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                            <a href="<?= base_url('pemilik/daftar-ruko/' . $row->id_ruko) ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
