@@ -99,6 +99,18 @@
 										</td>
 										<td><?= $ruko->lingkungan_lokasi_ruko ?></td>
 									</tr>
+									<tr>
+										<td>
+											<b>Pemilik</b>
+										</td>
+										<td><?= $ruko->nama ?></td>
+									</tr>
+									<tr>
+										<td>
+											<b>Kontak</b>
+										</td>
+										<td><?= $ruko->kontak ?></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

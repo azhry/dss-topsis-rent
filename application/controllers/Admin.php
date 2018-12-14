@@ -52,7 +52,7 @@ class Admin extends MY_Controller
 		$this->check_allowance(!isset($this->data['id_ruko']));
 
 		$this->load->model('ruko_m');
-		$this->data['ruko']			= $this->ruko_m->get_row(['id_ruko' => $this->data['id_ruko']]);
+		$this->data['ruko']			= $this->ruko_m->get_ruko_row(['id_ruko' => $this->data['id_ruko']]);
 		$this->check_allowance(!isset($this->data['ruko']), ['Data ruko tidak ditemukan', 'danger']);
 
 		$this->data['upload_dir'] 			= FCPATH . 'assets/foto/ruko-' . $this->data['ruko']->id_ruko;
