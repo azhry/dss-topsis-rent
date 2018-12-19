@@ -91,7 +91,7 @@ class Admin extends MY_Controller
 							$this->load->library('CI_PHPMailer/ci_phpmailer');
 							$this->ci_phpmailer->setServer('smtp.gmail.com');
 							$this->ci_phpmailer->setAuth('testdevsmail@gmail.com', '4kuGanteng');
-							$this->ci_phpmailer->setAlias('admin@sistemsewaruko.com', 'Sistem Ruko');
+							$this->ci_phpmailer->setAlias('ayunindahl@gmail.com', 'Ayuni Indah Lestari');
 							$this->ci_phpmailer->sendMessage($pengguna->email, 'Status Verifikasi Ruko ' . $ruko->ruko, 'Ruko ' . $ruko->ruko . ' telah berhasil diverifikasi');
 						}
 						break;

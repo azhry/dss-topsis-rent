@@ -60,7 +60,7 @@ class Home extends MY_Controller
 						$max_idx = $i;
 					}
 
-					if ($details[$i]['min'] > $min)
+					if ($details[$i]['min'] < $min)
 					{
 						$min = $details[$i]['min'];
 						$min_idx = $i;
@@ -83,6 +83,7 @@ class Home extends MY_Controller
 		
 		$this->data['criteria']	= $this->topsis->criteria;
 		$this->data['config']	= $this->data['criteria']->get_config();
+
 		$this->data['ruko']		= json_decode(json_encode($this->ruko_m->get(['status' => 'Verified'])), true);
 		
 		$matrix = $this->topsis->fit($this->data['ruko'], ['ruko', 'id_ruko', 'id_pengguna', 'latitude', 'longitude', 'status']);
@@ -307,7 +308,7 @@ class Home extends MY_Controller
 							$max_idx = $i;
 						}
 
-						if ($details[$i]->min > $min)
+						if ($details[$i]->min < $min)
 						{
 							$min = $details[$i]->min;
 							$min_idx = $i;

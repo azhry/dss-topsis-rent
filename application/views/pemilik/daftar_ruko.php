@@ -38,7 +38,7 @@
                             </p>  
                         </div>
                         <div class="col-md-4">
-                            <a href="#" class="btn btn-success pull-right">
+                            <a href="<?= base_url('pemilik/tambah-ruko') ?>" class="btn btn-success pull-right">
                                 <i class="fa fa-plus-square"></i> Tambah Ruko
                             </a>
                         </div>
