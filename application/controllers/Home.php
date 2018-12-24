@@ -81,6 +81,7 @@ class Home extends MY_Controller
 		$this->topsis->set_config($config);
 		$this->load->model('ruko_m');
 		
+		$this->data['range']	= $this->ruko_m->get_range();
 		$this->data['criteria']	= $this->topsis->criteria;
 		$this->data['config']	= $this->data['criteria']->get_config();
 
@@ -102,29 +103,14 @@ class Home extends MY_Controller
 		if ($this->POST('cari'))
 		{
 			$this->load->model('ruko_m');
+			$range = $this->ruko_m->get_range();
 			$cond = '';
 			
 			if (!empty($this->POST('biaya_sewa')))
 			{
 				$biaya_sewa = $this->POST('biaya_sewa');
-				switch ($biaya_sewa)
-				{
-					case 1:
-						$cond .= 'biaya_sewa > 187400000 ';
-						break;
-					case 2:
-						$cond .= '(biaya_sewa >= 149300000 AND biaya_sewa <= 187300000) ';
-						break;
-					case 3:
-						$cond .= '(biaya_sewa >= 111200000 AND biaya_sewa <= 149200000) ';
-						break;
-					case 4:
-						$cond .= '(biaya_sewa >= 73100000 AND biaya_sewa <= 111100000) ';
-						break;
-					case 5:
-						$cond .= 'biaya_sewa <= 7300000 ';
-						break;
-				}
+				$range_sewa = $range['biaya_sewa'];
+                $cond .= '(biaya_sewa >= ' . $range_sewa[count($range_sewa) - $biaya_sewa]['min'] . ' AND biaya_sewa <= ' . $range_sewa[count($range_sewa) - $biaya_sewa]['max'] . ') ';
 			}
 
 			if (!empty($this->POST('luas_bangunan')))

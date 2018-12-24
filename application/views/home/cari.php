@@ -46,24 +46,9 @@
 									<div class="col-md-9 col-sm-9 col-xs-12">
 										<select id="biaya_sewa" name="biaya_sewa" class="form-control col-md-7 col-xs-12">
 											<option value="">Pilih..</option>
-											<?php foreach ($config['biaya_sewa']['values'] as $option): ?>
-												<option value="<?= $option['value'] ?>">
-													<?php  
-														if ($option['min'] === null)
-														{
-															echo '< ' . 'Rp. ' . number_format($option['max'], 2, ',', '.'); 
-														}
-														else if ($option['max'] === null)
-														{
-															echo '> ' . 'Rp. ' . number_format($option['min'], 2, ',', '.');
-														}
-														else
-														{
-															echo 'Rp. ' . number_format($option['min'], 2, ',', '.') . ' - ' . 'Rp. ' . number_format($option['max'], 2, ',', '.');
-														}
-													?>
-												</option>
-											<?php endforeach; ?>
+											<?php $v = 0; for ($i = count($range['biaya_sewa']) - 1; $i >= 0; $i--): ?>
+												<option value="<?= ++$v ?>"><?= 'Rp. ' . number_format($range['biaya_sewa'][$i]['min'], 2, ',', '.') . ' - ' . 'Rp. ' . number_format($range['biaya_sewa'][$i]['max'], 2, ',', '.') ?></option>
+											<?php endfor; ?>
 										</select>
 									</div>
 								</div>
@@ -278,13 +263,13 @@
 		?>
 		window.location.href = '<?= base_url('login') ?>';
 		<?php endif; ?>
-		
+
 		const data = {
 			cari: true,
 			biaya_sewa: $('#biaya_sewa').val(),
 			luas_bangunan: $('#luas_bangunan').val(),
-			akses_menuju_lokasi: get_checkbox_values('akses_menuju_lokasi[]'),
-			pusat_keramaian: get_checkbox_values('pusat_keramaian[]'),
+			akses_menuju_lokasi: get_checkbox_values('akses_menuju_lokasi[]') || [],
+			pusat_keramaian: get_checkbox_values('pusat_keramaian') || [],
 			zona_parkir: $('#zona_parkir').val(),
 			jumlah_pesaing_serupa: $('#jumlah_pesaing_serupa').val(),
 			tingkat_konsumtif_masyarakat: $('#tingkat_konsumtif_masyarakat').val(),

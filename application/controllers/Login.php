@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends MY_Controller
 {
-	private $data = [];
-
   	public function __construct()
 	{
 	    parent::__construct();	
@@ -45,7 +43,7 @@ class Login extends MY_Controller
 			
 			$this->data = [
     			'username'	=> $this->POST('username'),
-    			'password'	=> md5($this->POST('password'))
+    			'password'	=> $this->POST('password')
 			];
 
 			$result = $this->pengguna_m->login($this->data);
@@ -56,6 +54,7 @@ class Login extends MY_Controller
 			redirect('login');
 			exit;
 		}
+		
 		$this->data['title'] 		= 'Login';
 		$this->data['global_title'] = $this->title;
 		$this->load->view('login',$this->data);
@@ -65,19 +64,4 @@ class Login extends MY_Controller
   	{
 	    $this->load->view('daftar');
 	}	
-
-	public function laporan()
-    {
-        $this->load->model('pelamar_m');
-        $this->load->model('hasil_penilaian_m');
-        $this->load->model('keputusan_m');
-        $this->load->model('kriteria_m');
-        $this->load->model('bobot_m');
-        $this->load->model('penilaian_m');
-
-        $this->data['kriteria'] = $this->kriteria_m->get();
-        $this->data['hasil']    = $this->hasil_penilaian_m->get_by_order('hasil', 'DESC');
-        $this->data['title']    = 'Ranking Pelamar';
-        $this->load->view('supervisor/laporan', $this->data);
-    }
 }
